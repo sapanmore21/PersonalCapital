@@ -1,5 +1,6 @@
-package com.personalcapital.challenge.challenge;
+package com.personalcapital.challenge.challenge.client;
 
+import com.personalcapital.challenge.challenge.client.ExternalClient;
 import com.personalcapital.challenge.challenge.model.Portfolio;
 import com.personalcapital.challenge.challenge.service.PortfolioService;
 
@@ -12,9 +13,9 @@ import static org.mockito.Mockito.*;
 /**
  * Created by admin on 8/10/15.
  */
-public class ClientTest {
+public class ExternalClientTest {
 
-    private Client client;
+    private ExternalClient client;
     private Portfolio portfolio;
     private PortfolioService portfolioService;
     private double initialAmt;
@@ -24,7 +25,7 @@ public class ClientTest {
     public void setUp() throws Exception {
         initialAmt = 100000;
         pType = "Aggressive";
-        client = new Client();
+        client = new ExternalClient();
         portfolioService = mock(PortfolioService.class);
         client.setPortfolioService(portfolioService);
         portfolio = Portfolio.getPortfolio(initialAmt, "Aggressive");
@@ -36,19 +37,17 @@ public class ClientTest {
 
     @After
     public void tearDown() throws Exception {
-
-    }
-
-    @Test
-    public void testMain() throws Exception {
-
+        pType = null;
+        client = null;
+        portfolioService = null;
+        portfolio = null;
     }
 
     @Test
     public void testAnalyseAggressivePortfolio() throws Exception {
 
         when(portfolioService.analysePortfolio(initialAmt, pType)).thenReturn(portfolio);
-        Portfolio pfolio = client.analyseAggressivePortfolio(initialAmt, pType);
+        Portfolio pfolio = client.createAndAnalysePortfolio(initialAmt, pType);
         Mockito.verify(portfolioService, VerificationModeFactory.times(1)).analysePortfolio(100000, "Aggressive");
         Assert.assertTrue("Portfolio Median should be greater than 0", pfolio.getMedian() > 0);
         Assert.assertTrue("Portfolio BestCase should be greater than 0", pfolio.getBestCase() > 0);

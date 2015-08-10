@@ -1,12 +1,8 @@
 package com.personalcapital.challenge.challenge.util;
 
 import com.personalcapital.challenge.challenge.constant.PortfolioConstants;
-
 import java.util.List;
 
-/**
- * Created by smore on 8/10/2015.
- */
 public class PortfolioUtils {
 
     // method used for calculating median investment amount for each year
