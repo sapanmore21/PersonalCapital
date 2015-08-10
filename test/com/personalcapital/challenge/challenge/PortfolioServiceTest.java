@@ -1,13 +1,11 @@
-package com.personalcapital.challenge;
+package com.personalcapital.challenge.challenge;
 
-import com.personalcapital.challenge.model.Portfolio;
-import com.personalcapital.challenge.model.PortfolioType;
-import com.personalcapital.challenge.service.PortfolioService;
+import com.personalcapital.challenge.challenge.model.Portfolio;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import sun.jvm.hotspot.utilities.AssertionFailure;
+
 
 /**
  * Created by admin on 8/9/15.
@@ -18,7 +16,7 @@ public class PortfolioServiceTest {
 
     @Before
     public void setUp() throws Exception {
-        aggressivePortfolio = new Portfolio(100000, "Aggressive");
+        aggressivePortfolio = Portfolio.getPortfolio(100000, "Aggressive");
     }
 
     @After
@@ -33,16 +31,16 @@ public class PortfolioServiceTest {
         Assert.assertNotNull(aggressivePortfolio);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testPortfolioTypeShouldNotBeNull() throws Exception {
-        aggressivePortfolio = new Portfolio(100000, null);
-        Assert.fail("Portfolio should not be created with null PortfolioType");
+        aggressivePortfolio = Portfolio.getPortfolio(100000, null);
+        Assert.assertNull(aggressivePortfolio);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testInitialAmtShouldNotBeZeroOrLess() throws Exception {
-        aggressivePortfolio = new Portfolio(0, "Aggressive");
-        Assert.fail("Portfolio should not be created with InitialAmount less than or equal to zero");
+        aggressivePortfolio = Portfolio.getPortfolio(0, "Aggressive");
+        Assert.assertNull(aggressivePortfolio);
     }
 
     @Test
@@ -60,10 +58,10 @@ public class PortfolioServiceTest {
         Assert.assertNotEquals("Portfolio should not have Portfolio Type as Conservative", "Conservative", aggressivePortfolio.getPortfolioType().name());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testNotAValidPortfolioType() throws Exception {
-        aggressivePortfolio = new Portfolio(100000, "Moderate");
-        Assert.fail("Moderate is not a valid Portfolio type");
+        aggressivePortfolio = Portfolio.getPortfolio(100000, "Moderate");
+        Assert.assertNull(aggressivePortfolio);
     }
 
     @Test
