@@ -1,7 +1,7 @@
-package com.personalcapital.challenge;
+package com.personalcapital.challenge.challenge;
 
-import com.personalcapital.challenge.model.Portfolio;
-import com.personalcapital.challenge.service.PortfolioService;
+import com.personalcapital.challenge.challenge.model.Portfolio;
+import com.personalcapital.challenge.challenge.service.PortfolioService;
 
 /**
  * Created by admin on 8/9/15.
@@ -25,22 +25,25 @@ public class Client {
         PortfolioService portfolioService = new PortfolioService();
 
         //create an aggressive portfolio and analyse it
-        Portfolio aggressivePortfolio = new Portfolio(100000,"Aggressive");
+        Portfolio aggressivePortfolio = Portfolio.getPortfolio(100000, "Aggressive");
         portfolioService.analysePortfolio(aggressivePortfolio);
         portfolioService.printAnalysedPortfolio(aggressivePortfolio);
 
         //create a conservative portfolio and analyse it
-        Portfolio conservativePortfolio = new Portfolio(100000,"Conservative");
+        Portfolio conservativePortfolio = Portfolio.getPortfolio(100000,"Conservative");
         portfolioService.analysePortfolio(conservativePortfolio);
         portfolioService.printAnalysedPortfolio(conservativePortfolio);
     }
 
-    public void analyseAggressivePortfolio(double initialAmt, String pType){
+    public Portfolio analyseAggressivePortfolio(double initialAmt, String pType){
 
         //PortfolioService portfolioService = new PortfolioService();
         //Portfolio aggressivePortfolio = new Portfolio(100000,"Aggressive");
+        if(portfolioService == null){
+            portfolioService = new PortfolioService();
+        }
 
-        portfolioService.analysePortfolio(initialAmt, pType);
+        return portfolioService.analysePortfolio(initialAmt, pType);
 
         //portfolioService.printAnalysedPortfolio(aggressivePortfolio);
     }
@@ -49,7 +52,7 @@ public class Client {
     public void analyseConservativePortfolio(){
 
         //PortfolioService portfolioService = new PortfolioService();
-        Portfolio conservativePortfolio = new Portfolio(100000,"Conservative");
+        Portfolio conservativePortfolio = Portfolio.getPortfolio(100000,"Conservative");
         portfolioService.analysePortfolio(conservativePortfolio);
 
         //portfolioService.printAnalysedPortfolio(conservativePortfolio);
@@ -58,7 +61,7 @@ public class Client {
     }
 
     public Portfolio createPortfolio(){
-        return new Portfolio(100000,"Aggressive");
+        return Portfolio.getPortfolio(100000,"Aggressive");
     }
 
 

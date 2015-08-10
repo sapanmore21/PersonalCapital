@@ -1,4 +1,4 @@
-package com.personalcapital.challenge.constant;
+package com.personalcapital.challenge.challenge.constant;
 
 /**
  * Created by admin on 8/9/15.
