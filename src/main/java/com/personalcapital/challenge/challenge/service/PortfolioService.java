@@ -13,8 +13,6 @@ public class PortfolioService {
 
 	/**
 	 * This method analyses the portfolio based on Monte Carlo simulation
-	 * @param Double initialAmt,
-	 * @param String pType
 	 * @return AnalysedPortfolio
 	 */
 	public Portfolio analysePortfolio(double initialAmt, String pType){

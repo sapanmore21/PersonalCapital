@@ -7,9 +7,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by smore on 8/10/2015.
- */
+
 public class PortfolioTest {
 
     private Portfolio aggressivePortfolio;
@@ -84,20 +82,4 @@ public class PortfolioTest {
         Assert.assertEquals("Portfolio should have standard deviation as 15.675", 0, Double.compare(aggressivePortfolio.getPortfolioType().getStandardDeviation(), 15.675));
     }
 
-/*    @Test
-    public void testPortfolioMedian() throws Exception {
-        Assert.assertNotNull("Portfolio Median should be null", aggressivePortfolio.getMedian());
-
-    }
-
-    @Test
-    public void testPortfolioBestCase() throws Exception {
-        Assert.assertNotNull("Portfolio Best case should be null", aggressivePortfolio.getBestCase());
-    }
-
-
-    @Test
-    public void testPortfolioWorstCase() throws Exception {
-        Assert.assertNotNull("Portfolio Worst case should be null", aggressivePortfolio.getWorstCase());
-    }*/
 }
